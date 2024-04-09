@@ -15,16 +15,23 @@ public class Program
         return params;
     }
 
+    static public void readsring() throws Exception
+    {
+        
+    }
+
+
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите Фамилия Имя Отчество дата_рождения номер_телефона пол: ");
-        String inpuString = in.nextLine();
-        ArrayList<String> paramslist = parseString(inpuString);
+        System.out.print("Фамилия Имя Отчество дата _ рождения номер _ телефона пол");
+        String inputString = in.nextLine();
+        // System.out.println(inputString);
+        ArrayList<String> paramslist = parseString(inputString);
 
         // System.out.printf("Ваш номер: %d \n", num);
         in.close();
-    }
+    } 
 
 
 }
