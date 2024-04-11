@@ -19,13 +19,26 @@ public class Program {
         char[] chars = string.toCharArray();
 
         for (char c : chars) {
-            if(!Character.isLetter(c)) {
+            if (!Character.isLetter(c)) {
                 return false;
             }
         }
-
         return true;
     }
+
+
+    public static boolean isNumber(String string) {
+            char[] chars = string.toCharArray();
+
+            for (char c : chars) {
+                if(!Character.isDigit(c)) {
+                    return false;
+                }
+            }
+        return true;
+    }
+
+
     public static String dateConverter(String dateString) throws Checkparamsexc  {
         //String dateString = "25.12.2022";
         SimpleDateFormat inputFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -34,7 +47,7 @@ public class Program {
         try {
             Date date = inputFormat.parse(dateString);
             String formattedDate = outputFormat.format(date);
-            System.out.println(formattedDate);
+//            System.out.println(formattedDate);
             return formattedDate;
         } catch (ParseException e) {
             //System.out.println("Ошибка преобразования даты");
@@ -56,8 +69,17 @@ public class Program {
              if (i==3)
              {
                  String formattedDate = dateConverter(paramslist.get(i));
+                 if (formattedDate == null)  throw new Checkparamsexc("Ошибка в формате даты!");
              }
-             System.out.println(paramslist.get(i));
+             if (i==4)
+             {
+                if (! isNumber((paramslist.get(i))))
+                {
+
+                    throw new Checkparamsexc("Телефонный номер содержит символы отличные от цифр!");
+             }
+             }
+//             System.out.println(paramslist.get(i));
          }
 
 
