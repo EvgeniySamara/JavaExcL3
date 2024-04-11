@@ -56,49 +56,94 @@ public class Program {
 
     }
 
-    public static void readstring(String inputString) throws Checkparamsexc {
+    public static ArrayList<String> readString(String inputString) throws Checkparamsexc {
         ArrayList<String> paramslist = parseString(inputString);
 
         if (paramslist.size() != 6) {
             throw new Checkparamsexc("Не совпадает количество параметров!");}
+
+
+
+
+
          for (int i=0; i<paramslist.size(); i++)
          {
-             if (i<3&! isAlpha(paramslist.get(i))) {
-                 throw new Checkparamsexc("ФИО содержит символы отличные от букв!");
-             }
-             if (i==3)
-             {
-                 String formattedDate = dateConverter(paramslist.get(i));
-                 if (formattedDate == null)  throw new Checkparamsexc("Ошибка в формате даты!");
-             }
-             if (i==4)
-             {
-                if (! isNumber((paramslist.get(i))))
-                {
+             switch (i) {
+                 case  0:
+                 case  1:
+                 case  2:
+                     if (! isAlpha(paramslist.get(i))) {
+                         throw new Checkparamsexc("ФИО содержит символы отличные от букв!");
+                     }
+                     break;
+                 case 3:
+                     String formattedDate = dateConverter(paramslist.get(i));
+                     if (formattedDate == null)  throw new Checkparamsexc("Ошибка в формате даты!");
+                     break;
+                 case 4:
+                     if (! isNumber((paramslist.get(i))))
+                     {
+                         throw new Checkparamsexc("Телефонный номер содержит символы отличные от цифр!");
+                     }
+                     break;
+                 case 5:
+                     if (paramslist.get(i).equals("f")|paramslist.get(i).equals("m")){}
+                     else
+                     {
+                         throw new Checkparamsexc("Некоректно указан пол!");
+                     }
+                     break;
 
-                    throw new Checkparamsexc("Телефонный номер содержит символы отличные от цифр!");
+
+//                 default:
+//
+//                     break;
              }
-             }
+
+
+//             if (i<3&! isAlpha(paramslist.get(i))) {
+//                 throw new Checkparamsexc("ФИО содержит символы отличные от букв!");
+//             }
+//             if (i==3)
+//             {
+//                 String formattedDate = dateConverter(paramslist.get(i));
+////                 if (formattedDate == null)  throw new Checkparamsexc("Ошибка в формате даты!");
+////             }
+//             if (i==4)
+//             {
+//                if (! isNumber((paramslist.get(i))))
+//                {
+//
+//                    throw new Checkparamsexc("Телефонный номер содержит символы отличные от цифр!");
+//             }
+//             }
 //             System.out.println(paramslist.get(i));
          }
-
+        return paramslist;
 
     }
 
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        System.out.println("Введите параметры через пробел: Фамилия Имя Отчество дата _ рождения номер _ телефона пол: ");
-        System.out.println("(фамилия, имя, отчество - строки дата _ рождения - строка формата dd.mm.yyyy номер _ телефона - целое беззнаковое число без форматирования пол - символ латиницей f или m.)");
+        boolean flag = true;
+        ArrayList<String> paramslist = new ArrayList<>();
+        while (flag)
+        {
+            System.out.println("Введите параметры через пробел: Фамилия Имя Отчество дата _ рождения номер _ телефона пол: ");
+            System.out.println("(фамилия, имя, отчество - строки дата _ рождения - строка формата dd.mm.yyyy номер _ телефона - целое беззнаковое число без форматирования пол - символ латиницей f или m.)");
 
-        String inputString = in.nextLine();
+            String inputString = in.nextLine();
 
-        try {
-            readstring(inputString);
-        } catch (Checkparamsexc e) {
-            System.out.println(e.getMessage());
+            try {
+                paramslist=readString(inputString);
+            } catch (Checkparamsexc e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println("Для выхода введите 'q' или любое другое значение для продолжения");
+            inputString = in.nextLine();
+            if (inputString.equals("q")) {flag = false;}
         }
-
         in.close();
     }
 }
