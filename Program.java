@@ -137,6 +137,7 @@ public class Program {
 
             try {
                 paramslist=readString(inputString);
+                FileWriterClass.writeToFile(paramslist);
             } catch (Checkparamsexc e) {
                 System.out.println(e.getMessage());
             }
