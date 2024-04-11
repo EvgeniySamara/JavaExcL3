@@ -62,10 +62,6 @@ public class Program {
         if (paramslist.size() != 6) {
             throw new Checkparamsexc("Не совпадает количество параметров!");}
 
-
-
-
-
          for (int i=0; i<paramslist.size(); i++)
          {
              switch (i) {
@@ -94,30 +90,8 @@ public class Program {
                      }
                      break;
 
-
-//                 default:
-//
-//                     break;
              }
 
-
-//             if (i<3&! isAlpha(paramslist.get(i))) {
-//                 throw new Checkparamsexc("ФИО содержит символы отличные от букв!");
-//             }
-//             if (i==3)
-//             {
-//                 String formattedDate = dateConverter(paramslist.get(i));
-////                 if (formattedDate == null)  throw new Checkparamsexc("Ошибка в формате даты!");
-////             }
-//             if (i==4)
-//             {
-//                if (! isNumber((paramslist.get(i))))
-//                {
-//
-//                    throw new Checkparamsexc("Телефонный номер содержит символы отличные от цифр!");
-//             }
-//             }
-//             System.out.println(paramslist.get(i));
          }
         return paramslist;
 
